@@ -1,296 +1,304 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Biwla’s Underwater Birthday Mission</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>🎂 BIWLA 21 — Underwater Birthday Carnival</title>
 <style>
-:root{--cyan:#22d3ee;--ink:#eaf9ff;--warn:#ffd166;--card:rgba(3,29,61,.74);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--cyan:#22d3ee;--ink:#eaf9ff;--warn:#ffd166;--card:rgba(3,29,61,.74)}}
-:root[data-theme="dark"]{--cyan:#22d3ee;--ink:#eaf9ff;--warn:#ffd166;--card:rgba(3,29,61,.74)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box;margin:0}
-html,body{height:100%}
-body{font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:#031d3d;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:rgba(3,29,61,.9)}
-[hidden]{display:none!important}
-/* LATAR LAUT */
-#sea{position:fixed;inset:0;z-index:0;overflow:hidden;background:linear-gradient(180deg,#1aa5c8,#0a4a7a 40%,#031d3d 80%,#020f24);background-size:100% 300%;background-position:0 var(--p,0%);transition:background-position 1.5s}
-.rays{position:absolute;inset:0;background:repeating-linear-gradient(100deg,rgba(255,255,255,.11) 0 28px,transparent 28px 120px);-webkit-mask-image:linear-gradient(#000,transparent 60%);mask-image:linear-gradient(#000,transparent 60%);animation:sway 9s ease-in-out infinite alternate}
-.bb{position:absolute;bottom:-30px;border-radius:50%;border:1px solid #fffa;background:radial-gradient(circle at 30% 30%,#fffc,#fff2);animation:rise linear forwards}
-.fish{position:absolute;font-size:26px;animation:swim linear infinite;opacity:.85}
-.fish.r{transform:scaleX(-1)}
-#reef{position:fixed;bottom:0;left:0;right:0;z-index:2;font-size:34px;white-space:nowrap;overflow:hidden;text-align:center;pointer-events:none;background:linear-gradient(transparent,rgba(231,201,138,.3))}
-@keyframes rise{to{transform:translateY(-115vh) translateX(25px)}}
-@keyframes swim{from{left:-60px}to{left:110%}}
-@keyframes sway{to{transform:translateX(40px) skewX(4deg)}}
-@keyframes pass{from{left:100%}to{left:-200px}}
-@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
-@keyframes fade{to{opacity:1}}
-@keyframes bob{50%{transform:translateY(-8px) rotate(6deg)}}
-@keyframes in{from{opacity:0;transform:translateY(16px)}}
-.shk{width:150px;height:72px}
-.pass{position:fixed;z-index:3;opacity:.5;animation:pass 9s linear forwards;pointer-events:none}
-/* HEADER */
-#top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;gap:8px;align-items:center;padding:calc(8px + env(safe-area-inset-top,0px)) 12px 8px;background:linear-gradient(rgba(3,29,61,.9),rgba(3,29,61,0));font-size:.9rem;font-weight:700}
-#pb{flex:1;height:12px;border-radius:9px;background:rgba(255,255,255,.18);overflow:hidden}
-#pf{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),#fff)}
-#sb{font-size:1.1rem;border:0;border-radius:50%;width:36px;height:36px;cursor:pointer;background:#fff;color:#0a4a7a}
-/* LAYOUT */
-main{position:relative;z-index:5;min-height:100%;display:flex;align-items:center;justify-content:center;padding:70px 14px 90px}
-.scr{display:none;width:100%;max-width:560px;text-align:center}
-.scr.on{display:block;animation:in .6s}
-.card{background:var(--card);border:2px solid rgba(34,211,238,.55);border-radius:22px;padding:20px 16px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
-h1{font-size:clamp(28px,8vw,46px);line-height:1.05;font-weight:800;margin-bottom:8px;text-shadow:0 3px 0 #0a4a7a}
-h2{font-size:clamp(22px,6vw,30px);line-height:1.1;font-weight:800;margin-bottom:8px}
-p{margin:8px 0;line-height:1.4}
-.sub{color:var(--cyan);font-weight:700}
-.btn{font:inherit;font-weight:700;font-size:1.02rem;padding:10px 18px;margin:5px;border:0;border-radius:40px;cursor:pointer;color:#032;background:linear-gradient(#67e8f9,#22d3ee);box-shadow:0 4px 0 #0e7490}
-.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #0e7490}
-.btn.alt{background:#fff;color:#0a4a7a;box-shadow:0 4px 0 #94a3b8}
-.btn:focus-visible,#sb:focus-visible{outline:3px solid var(--warn);outline-offset:2px}
-.btn.bad{animation:shake .4s}
-.msg{min-height:1.5em;color:var(--warn);font-weight:700}
-.compass{font-size:46px;display:inline-block;animation:bob 3s ease-in-out infinite}
-#board{list-style:none;padding:0;text-align:left;margin:10px auto;max-width:330px;font-size:.95rem}
-#board li::before{content:"⬜ "}
-#board li.done::before{content:"✅ "}
-.g{display:grid;grid-template-columns:110px 1fr 74px;gap:8px;align-items:center;margin:7px 0;font-size:.9rem;text-align:left}
-.g div.t{height:12px;border-radius:8px;background:rgba(255,255,255,.18);overflow:hidden}
-.g div.t i{display:block;height:100%;width:0;background:var(--cyan);transition:width 1.6s}
-.g.bad div.t i{background:#ff5d73}
-.sw{position:relative;height:80px;overflow:hidden;margin:6px 0}
-.sw .shk{position:absolute;top:4px;left:100%;animation:pass 6s linear infinite}
-#arena{position:relative;height:120px}
-#dodge{position:absolute;left:calc(50% - 90px);top:40px;transition:left .25s,top .25s}
-#depth{font-size:2.4rem;font-weight:800;color:var(--warn)}
-.ruler{height:16px;border-radius:9px;background:rgba(255,255,255,.18);overflow:hidden;margin:6px 0}
-.ruler i{display:block;height:100%;width:0;background:var(--warn)}
-#hc{list-style:none;padding:0;text-align:left}
-#hc li{margin:7px 0;padding:8px 12px;border-left:4px solid var(--cyan);background:rgba(255,255,255,.08);border-radius:8px;animation:in .5s}
-.env{position:relative;width:220px;height:140px;margin:22px auto 14px;background:#f6e7c1;border-radius:6px;box-shadow:0 8px 20px #0006}
-.env .fl{position:absolute;inset:0 0 auto 0;height:78px;background:#e0c37e;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s;z-index:3}
-.env .lt{position:absolute;left:12px;right:12px;bottom:8px;height:112px;background:#fff;transition:transform 1s .7s;z-index:2}
-.env::after{content:"";position:absolute;inset:0;background:#f1dba5;clip-path:polygon(0 100%,0 38%,50% 72%,100% 38%,100% 100%);z-index:4}
-.env.open .fl{transform:rotateX(180deg);z-index:1}
-.env.open .lt{transform:translateY(-95px)}
-.paper{background:#fffbea;color:#3a2f1c;text-align:left;border-radius:10px;padding:18px 16px;font-size:1.02rem;box-shadow:0 10px 30px #0008}
-.paper p{opacity:0;animation:fade .9s forwards;margin:0 0 11px}
-.ban{display:inline-block;background:#ffd166;color:#4a2c00;font-weight:800;padding:8px 14px;border-radius:6px;border:3px dashed #4a2c00;transform:rotate(-3deg)}
-#toast{position:fixed;z-index:30;left:50%;top:calc(52px + env(safe-area-inset-top,0px));transform:translate(-50%,-140%);width:min(92vw,420px);background:#fff;color:#0a4a7a;font-weight:700;padding:10px 14px;border-radius:14px;box-shadow:0 8px 24px #0006;transition:transform .4s;text-align:center}
-#toast.show{transform:translate(-50%,0)}
-#load{position:fixed;inset:0;z-index:40;background:#021428;display:none;align-items:center;justify-content:center;text-align:center;padding:20px}
-#load.on{display:flex}
-.lb{width:min(80vw,320px);height:16px;border-radius:10px;background:#123;margin:14px auto;overflow:hidden}
-#lf{height:100%;width:0;background:var(--cyan)}
-@media (prefers-reduced-motion:reduce){.fish,.rays,.compass{animation:none}}
-@media (max-width:420px){.g{grid-template-columns:88px 1fr 64px;font-size:.8rem}}
-</style>
-</head>
-<body>
-<!-- Ilustrasi hiu (dipakai ulang lewat <use>) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="shark" viewBox="0 -8 200 100">
-<path d="M5 50C40 15 120 10 175 38L198 18 190 48 198 78 172 58C120 85 45 85 5 50Z" fill="#6aa5c4"/>
-<path d="M62 24L88 -6 104 22Z" fill="#4f8aa8"/>
-<path d="M28 58C60 86 130 86 172 58 120 70 60 70 28 58Z" fill="#eaf7ff"/>
-<path d="M72 64L84 86 98 64Z" fill="#4f8aa8"/>
-<circle cx="42" cy="44" r="4" fill="#031d3d"/><path d="M36 57q9 7 18 2" stroke="#031d3d" fill="none" stroke-width="2.5"/>
-</symbol></defs></svg>
+/* ===== WARNA & DASAR (edit di sini) ===== */
+:root{--t:#19e6d4;--p:#ff4fd8;--y:#fff23a;--v:#7b3cff;--b:#021b3a}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;color:#fff;font-family:'Trebuchet MS','Comic Sans MS',sans-serif;background:linear-gradient(#0a5ca8,#042a5a 55%,#010812)}
+.hid{display:none!important}
+#fx{position:fixed;inset:0;z-index:55;pointer-events:none}
+#bg{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.bu{position:absolute;bottom:-60px;border-radius:50%;border:2px solid #fff8;background:radial-gradient(circle at 30% 30%,#fffa,#fff1);animation:rise linear infinite}
+.fs{position:absolute;font-size:30px;animation:swim linear infinite}
+@keyframes rise{to{transform:translateY(-115vh)}}
+@keyframes swim{from{transform:translateX(-80px) scaleX(-1)}to{transform:translateX(calc(100vw + 80px)) scaleX(-1)}}
+#sw{position:fixed;bottom:0;left:0;right:0;z-index:1;display:flex;justify-content:space-around;font-size:40px;pointer-events:none;line-height:1}
+#sw span{display:inline-block;transform-origin:bottom;animation:sway 2.5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+#fish{position:fixed;left:0;top:0;z-index:90;font-size:34px;pointer-events:none}
+/* HUD */
+#hud{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;gap:8px;align-items:center;padding:calc(8px + env(safe-area-inset-top,0px)) 10px 8px;background:#021b3aaa}
+#bar{flex:1;height:14px;border-radius:9px;background:#0007;overflow:hidden;border:2px solid #fff6}
+#fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--t),var(--y),var(--p));transition:width .6s}
+#lv{font-weight:900;font-size:13px;white-space:nowrap}
+#hud button{border:0;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;background:var(--y)}
+/* SCENES */
+.scene{position:absolute;inset:0;z-index:2;display:none;padding:62px 14px 54px;overflow-y:auto;text-align:center}
+.scene.on{display:flex;animation:fin .5s}
+@keyframes fin{from{opacity:0;transform:scale(1.15)}}
+.w{margin:auto;max-width:640px;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px}
+h2{font-size:clamp(24px,6.5vw,44px);line-height:1.05;font-weight:900;text-transform:uppercase;color:var(--y);text-shadow:3px 3px 0 var(--p),6px 6px 0 var(--v);letter-spacing:1px}
+.big{font-size:clamp(18px,4.5vw,26px);font-weight:800}
+.red{color:#ff3b4e;animation:blink .6s steps(2) infinite}
+@keyframes blink{50%{opacity:.2}}
+.btn{border:4px solid #fff;border-radius:50px;padding:14px 22px;font:inherit;font-weight:900;font-size:clamp(14px,3.8vw,19px);color:#26005a;cursor:pointer;background:linear-gradient(135deg,var(--y),#ff9f1c);box-shadow:0 6px 0 #9b4d00,0 0 24px #ffe55c88;transition:transform .15s;animation:bnc 1.2s ease-in-out infinite}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 #9b4d00}
+.btn:disabled{filter:grayscale(.8);animation:none}
+.btn.alt{background:linear-gradient(135deg,var(--t),#4d8bff);box-shadow:0 6px 0 #0b3d8c}
+@keyframes bnc{50%{transform:scale(1.06) rotate(-1deg)}}
+.card{background:#052a5bcc;border:3px solid var(--t);border-radius:18px;padding:12px 16px;width:100%;font-weight:700}
+.card li{text-align:left;margin:6px 0 6px 18px}
+/* AVATAR */
+.avs{animation:zin .9s cubic-bezier(.2,1.6,.4,1)}
+@keyframes zin{from{transform:scale(0) rotate(-360deg)}}
+.av{width:min(46vw,200px);aspect-ratio:1;position:relative;cursor:pointer;animation:bob 3s ease-in-out infinite alternate}
+.av.sm{width:74px}
+@keyframes bob{to{transform:translateY(-12px) rotate(3deg)}}
+.face{position:absolute;inset:9%;border-radius:50%;border:5px solid var(--y);background:#fff url(biwla.jpg) 50% 28%/165% auto no-repeat;box-shadow:0 0 30px var(--t),inset 0 0 0 3px var(--p)}
+.av u{position:absolute;top:-2%;right:-2%;font-size:clamp(26px,7vw,40px);text-decoration:none}
+.orb{position:absolute;inset:-2%;animation:spin 6s linear infinite}
+.orb i{position:absolute;font-style:normal;font-size:24px}
+.orb i:nth-child(1){top:-4px;left:46%}.orb i:nth-child(2){bottom:8%;left:-4px}.orb i:nth-child(3){bottom:8%;right:-4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wob{animation:wob .6s}
+@keyframes wob{25%{transform:rotate(-25deg) scale(1.2)}50%{transform:rotate(25deg) scale(.9)}75%{transform:rotate(-10deg)}}
+.sp{position:absolute;left:50%;top:-14px;transform:translateX(-50%);background:#fff;color:#c00;font-weight:900;border-radius:14px;padding:4px 10px;white-space:nowrap;animation:up 1s forwards;z-index:5}
+@keyframes up{to{top:-60px;opacity:0}}
+/* RADAR */
+#radar{width:min(60vw,220px);aspect-ratio:1;border-radius:50%;border:3px solid #3f3;background:repeating-radial-gradient(#0a2a0a 0 18px,#1c6b1c 19px 20px);position:relative;box-shadow:0 0 30px #3f38}
+#radar i{position:absolute;inset:0;border-radius:50%;background:conic-gradient(#3f3a,transparent 25%);animation:spin 1.6s linear infinite}
+#radar b{position:absolute;top:28%;left:60%;font-size:26px;animation:blink .5s infinite}
+/* STAT */
+.stat{width:100%;display:flex;justify-content:space-between;gap:8px;padding:10px 14px;border-radius:14px;border:3px solid var(--t);background:#0b2a5add;color:#fff;font:inherit;font-weight:800;cursor:pointer;animation:sl .5s;text-align:left}
+.stat span:last-child{color:var(--y);text-align:right}
+@keyframes sl{from{transform:translateX(-120%)}}
+/* GAUGE */
+#gauge{width:240px;height:125px;border-radius:240px 240px 0 0;border:5px solid #fff;border-bottom:0;background:conic-gradient(from 270deg at 50% 100%,#3f3,#ff0,#f33 90deg,transparent 90deg);position:relative;overflow:hidden}
+#gauge{background:conic-gradient(from 270deg at 50% 100%,#3f3 0,#ff0 45deg,#f33 90deg,transparent 90deg 360deg)}
+#needle{position:absolute;bottom:0;left:50%;width:6px;height:110px;margin-left:-3px;background:#fff;border-radius:3px;transform-origin:bottom;transform:rotate(-85deg);transition:transform .45s cubic-bezier(.5,2,.5,1)}
+.flee{position:fixed;z-index:20;font-size:34px;animation:flee 1.6s forwards}
+@keyframes flee{to{transform:translate(var(--x),-40px) rotate(720deg);opacity:0}}
+/* RULER */
+#ruler{position:relative;width:150px;height:230px;border-left:8px solid #fc0;background:repeating-linear-gradient(#0000 0 22px,#fff6 22px 23px)}
+#line{position:absolute;left:0;right:0;top:22.5%;border-top:3px dashed #f33;color:#f66;font-weight:900;text-align:right;font-size:12px}
+#hm{position:absolute;left:50%;margin-left:-37px;bottom:0;transition:bottom .1s,transform .5s}
+/* BOSS */
+.hp{height:18px;border-radius:9px;background:#000a;border:2px solid #fff;overflow:hidden;width:100%}
+.hp i{display:block;height:100%;transition:width .3s}
+#boss{font-size:clamp(90px,28vw,150px);line-height:1;animation:bob 1s infinite alternate}
+.dmg{position:fixed;z-index:20;font-weight:900;font-size:24px;color:#ff0;text-shadow:2px 2px 0 #f00;animation:up2 1s forwards;pointer-events:none}
+@keyframes up2{to{transform:translateY(-80px);opacity:0}}
+/* LOMBOK */
+#sea{position:relative;width:100%;height:170px;border-radius:18px;overflow:hidden;background:linear-gradient(#ffb347 0,#ffe08a 30%,#2bb7e8 31%,#0a6ac2);border:4px solid #fff}
+#sea .sun{position:absolute;top:6px;right:12px;font-size:40px;animation:spin 8s linear infinite}
+#boat{position:absolute;left:2%;bottom:22px;font-size:54px;transition:left 3.2s ease-in-out}
+#sea small{position:absolute;bottom:3px;font-weight:900;font-size:12px}
+/* GAME */
+#s6{overflow:hidden}
+.bub{position:absolute;bottom:-100px;border-radius:50%;cursor:pointer;border:3px solid #fffb;animation:rise linear forwards;z-index:3;touch-action:manipulation}
+#cnt{font-size:34px;font-weight:900;color:var(--y);text-shadow:3px 3px 0 var(--p)}
+#s6 .w{pointer-events:none;position:relative;z-index:4}
+#s6 .w button{pointer-events:auto}
+.pt{position:fixed;z-index:20;font-weight:900;color:#fff;font-size:20px;text-shadow:2px 2px 0 #000;animation:up2 1s forwards;pointer-events:none}
+/* CAKE */
+#cd{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 7px;width:70%;margin:0 auto;padding-top:6px}
+.c{width:9px;height:28px;border-radius:2px;background:repeating-linear-gradient(45deg,#fff 0 5px,var(--p) 5px 10px);position:relative}
+.c::before{content:'';position:absolute;top:-15px;left:-1px;width:11px;height:15px;background:radial-gradient(#fff,#ffb300 60%,#f50);border-radius:50% 50% 50% 50%/65% 65% 35% 35%;animation:fl .25s infinite alternate;box-shadow:0 0 12px #ffb300}
+.c.o::before{display:none}
+@keyframes fl{to{transform:scale(1.15,.9) rotate(5deg)}}
+.cake{width:min(310px,88vw)}
+.tier{border-radius:14px;border-bottom:8px solid #fff}
+.t1{width:70%;margin:0 auto;height:48px;background:linear-gradient(#fff,#ffc6ee)}
+.t2{height:64px;background:linear-gradient(#ff8fd8,#ff3fc0)}
+#dark{position:fixed;inset:0;z-index:54;background:#000;opacity:0;pointer-events:none;transition:opacity .6s}
+.dance{animation:dance .5s infinite alternate!important}
+@keyframes dance{from{transform:rotate(-12deg)}to{transform:rotate(12deg) translateY(-20px)}}
+/* PESAN */
+#s8{background:radial-gradient(ellipse at 50% -10%,#fff9b0cc,#4fd3ff55 40%,#0000 70%)}
+#msg{text-align:left;background:#fffdf0;color:#2a1a4a;border-radius:18px;padding:18px;line-height:1.55;border:4px solid var(--y);animation:zin .8s;font-size:clamp(14px,3.7vw,17px)}
+#msg p{margin-bottom:10px}
+#chest{font-size:90px;cursor:pointer;background:none;border:0;animation:bnc 1s infinite}
+/* MODAL & GATE */
+#modal,#gate{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:#000b;padding:20px}
+#modal{z-index:70}#gate{z-index:80;display:flex;background:linear-gradient(#0a5ca8,#010812);flex-direction:column;gap:14px;text-align:center}
+.box{background:#fff;color:#26005a;border:5px solid var(--p);border-radius:20px;padding:20px;max-width:420px;font-weight:800;font-size:18px;display:flex;flex-direction:column;gap:14px;align-items:center;animation:zin .5s}
+@media(prefers-reduced-motion:reduce){.orb,.bu,.fs,#sw span{animation:none}}
+</style></head><body>
+<canvas id="fx"></canvas><div id="bg"></div><div id="sw"><span>🌿</span><span>🪸</span><span>🌿</span><span>🐚</span><span>🪸</span><span>🌿</span></div><div id="fish">🐟</div><div id="dark"></div>
+<div id="hud"><div id="bar"><i id="fill"></i></div><span id="lv">LV 1/9</span><button id="mute" title="Suara">🔊</button><button id="rs" title="Ulangi dari awal">↺</button></div>
 
-<div id="sea"><div class="rays"></div></div>
-<div id="reef" aria-hidden="true">🪸🌿🪸🐚🌿🪸🌿🪸🐚🌿🪸🌿🪸🌿🪸🐚🌿🪸🌿🪸🌿</div>
+<div id="gate"><h2>🌊 Biwla Birthday Game 🎂</h2><p class="big">Game ulang tahun khusus buat satu orang di dunia.</p>
+<button class="btn" id="g1">▶ MAIN + SUARA 🔊</button><button class="btn alt" id="g2">Main tanpa suara 🔇</button></div>
+<div id="modal"><div class="box"><p id="mt"></p><button class="btn" id="mok">OKE, GAJELAS 😤</button></div></div>
 
-<header id="top">
-<span id="dp">🤿 0 m</span>
-<div id="pb"><div id="pf"></div></div>
-<span id="pt">0%</span>
-<button id="sb" aria-label="Nyalakan atau matikan suara">🔇</button>
-</header>
-<div id="toast" role="status"></div>
-<div id="load"><div><h2 id="lt"></h2><div class="lb"><div id="lf"></div></div></div></div>
+<!-- SCENE 1: OPENING -->
+<section class="scene" id="s0"><div class="w"><h2 id="warn" class="red"></h2><p id="t1" class="big"></p><p id="t2"></p>
+<div id="radar" class="hid"><i></i><b>📍</b></div><div id="a0" class="avs hid"></div>
+<button class="btn run hid" id="b0">KLIK JIKA BERANI MENYELAMI LAUT KEHIDUPAN BIWLA</button></div></section>
 
-<main>
-<!-- HALAMAN 1 -->
-<section class="scr on" id="s0"><div class="card">
-<div class="compass">🧭</div>
-<h1>SELAMAT DATANG, BIWLA!</h1>
-<p class="sub">An underwater mission is waiting for you...</p>
-<p>Kamu resmi memasuki misi khusus: naik level dari 20 menjadi 21 tahun. Hiu sudah standby, plankton sudah absen, dan sinyal dari dataran tinggi Bandung sudah lama putus.</p>
-<ul id="board"><li>Verifikasi identitas</li><li>Pemeriksaan kualitas perairan</li><li>Uji keberanian bersama hiu</li><li>Pengukuran “kedalaman”</li><li>Temukan surat rahasia</li></ul>
-<button class="btn" id="start">MULAI PETUALANGAN</button>
-<button class="btn alt" id="fear">Aku takut hiu...</button>
-<p class="msg" id="fm"></p>
-</div></section>
+<!-- SCENE 2: PROFIL -->
+<section class="scene" id="s1"><div class="w"><h2>BIWLA — THE LEGENDARY SEA CREATURE</h2><div class="avs" id="a1"></div>
+<div id="stats" class="w"></div>
+<div class="card" id="j1" style="font-style:italic">Jangan tertipu ukuran tubuhnya. Walau di bawah 155 cm, kekuatan menggosip dan daya tahan menghadapi dosen pembimbing berada di luar nalar.<br><br>Ukuran travel size: praktis dibawa ke mana-mana, hemat tempat, tapi jangan coba-coba taruh di bagasi.</div>
+<button class="btn hid" id="b1">LANJUT KE LABORATORIUM ➜</button></div></section>
 
-<!-- HALAMAN 2 -->
-<section class="scr" id="s1"><div class="card">
-<h2>Verifikasi Identitas</h2>
-<p class="sub" id="qn"></p><p id="qt"></p>
-<div id="qo"></div><p class="msg" id="qm"></p>
-</div></section>
+<!-- SCENE 3: AMIS -->
+<section class="scene" id="s2"><div class="w"><h2>🧪 SEAFOOD DETECTOR 3000</h2>
+<div id="gauge"><i id="needle"></i></div>
+<p class="big red" id="r2">WARNING! BAU AMIS TERDETEKSI!</p><p>Objek terindikasi merupakan mahasiswa Manajemen Sumberdaya Perairan.</p>
+<ul class="card"><li>Bukan tidak mandi, hanya sedang membawa aroma ekosistem perairan.</li><li>Kalau Biwla lewat, ikan langsung merasa di habitat aslinya.</li><li>Parfum boleh floral, tetapi jiwa tetap beraroma tambak.</li><li>Kadar amis meningkat seiring bertambahnya semester.</li></ul>
+<button class="btn" id="b2a">CEK KADAR AMIS BIWLA</button><button class="btn alt hid" id="b2">LANJUT ➜</button></div></section>
 
-<!-- HALAMAN 3 -->
-<section class="scr" id="s2"><div class="card">
-<h2>Pemeriksaan Kualitas Perairan</h2>
-<div id="gauges"></div>
-<p>Setelah dilakukan pengamatan, terdeteksi adanya peningkatan kadar ke-amis-an di sekitar lokasi. Diduga kuat disebabkan oleh mahasiswa MSP yang sedang berulang tahun.</p>
-<p class="msg" id="anm"></p>
-<button class="btn" id="an">LANJUTKAN ANALISIS</button>
-</div></section>
+<!-- SCENE 4: TINGGI -->
+<section class="scene" id="s3"><div class="w"><h2>📏 Height Challenge: Where is Biwla?</h2>
+<p class="big" id="hs">SEDANG MELAKUKAN PEMINDAIAN TINGGI BADAN...</p>
+<div style="display:flex;gap:20px;align-items:flex-end"><div id="ruler"><b id="line">155 CM</b><div id="hm" class="avs"></div></div><div class="big" id="hn" style="font-size:38px;color:var(--y)">0 CM</div></div>
+<ul class="card hid" id="j3"><li>Tinggi boleh minimalis, tetapi keinginan harus maksimalis.</li><li>Bukan pendek, hanya versi compact edition.</li><li>Ketika menyelam, tidak perlu terlalu jauh dari permukaan.</li><li>Kalau ada yang bilang Biwla pendek: ini desain aerodinamis.</li><li>Tinggi badan hemat tempat, tingkah laku memenuhi satu samudra.</li></ul>
+<div class="hid" id="g3"><button class="btn" id="b3a">KLIK UNTUK MENAMBAH TINGGI BADAN</button> <button class="btn alt" id="b3h">👠 PASANG SEPATU HAK VIRTUAL</button></div>
+<button class="btn run hid" id="b3">LANJUT KE BOSS ➜</button></div></section>
 
-<!-- HALAMAN 4 -->
-<section class="scr" id="s3"><div class="card">
-<h2>Uji Keberanian Bersama Hiu</h2>
-<p>Hiu lokal lewat. Katanya sempat nyasar mencarimu di dataran tinggi Bandung. Pilih tindakanmu:</p>
-<div class="sw"><svg class="shk"><use href="#shark"/></svg></div>
-<div id="ch"></div>
-<p class="msg" id="shm"></p>
-<div id="arena" hidden><button class="btn" id="dodge">Klik kalau berani!</button></div>
-<button class="btn" id="n3" hidden>LANJUT MENYELAM</button>
-</div></section>
+<!-- SCENE 5: BOSS -->
+<section class="scene" id="s4"><div class="w"><h2>⚔️ FINAL BOSS: SKRIPSI & DOSEN PEMBIMBING</h2>
+<div id="boss">🦑</div><div class="hp"><i id="hpb" style="width:100%;background:#f33"></i></div><p id="bl">Skripsi: 9999 HP | Revisi: Unlimited</p>
+<div class="hp"><i id="hph" style="width:100%;background:#3f3"></i></div><p>Biwla: <b id="hpn">100</b> HP</p>
+<p class="card" id="log">Musuh terbesar mahasiswa bukan hiu, melainkan revisi yang tidak ada habisnya. Sudah menyelam sampai dasar laut, tapi BAB 4 belum menemukan titik terang.</p>
+<button class="btn" id="b4a">⚔️ LAWAN SKRIPSI SEKARANG</button><button class="btn alt hid" id="b4">KABUR KE LOMBOK ➜</button></div></section>
 
-<!-- HALAMAN 5 -->
-<section class="scr" id="s4"><div class="card">
-<h2>Sonar Pengukur Kedalaman</h2>
-<p id="dl">Tekan tombol untuk mengukur kedalaman laut di sekitarmu.</p>
-<div id="depth">0,00 m</div>
-<div class="ruler"><i id="rf"></i></div>
-<ul id="hc"></ul>
-<button class="btn" id="ms">MULAI PENGUKURAN</button>
-<button class="btn" id="n4" hidden>LANJUT KE DASAR LAUT</button>
-</div></section>
+<!-- SCENE 6: LOMBOK -->
+<section class="scene" id="s5"><div class="w"><h2>🏝️ NEXT MISSION: LOMBOK EXPEDITION!</h2>
+<div id="sea"><span class="sun">☀️</span><small style="left:6px">BANDUNG</small><small style="right:6px">LOMBOK</small><div id="boat">🚤</div><span style="position:absolute;bottom:60px;right:20px;font-size:34px">🏝️</span><span style="position:absolute;left:30%;bottom:6px;font-size:30px">🐠</span><span style="position:absolute;left:60%;bottom:8px;font-size:30px">🐙</span></div>
+<p id="lt" class="big">Dari Bandung menuju Lombok: cari ketenangan sekaligus spot diving.</p>
+<ul class="card"><li>Semoga di Lombok ketemu ikan cantik, laut jernih, bukan revisi yang bening-bening menghilang.</li><li>Jangan sampai yang dibawa pulang cuma foto, skripsinya masih tertinggal di semester 7.</li></ul>
+<button class="btn run" id="b5a">BERANGKAT KE LOMBOK!</button><button class="btn alt hid" id="b5">LANJUT ➜</button></div></section>
 
-<!-- HALAMAN 6: amplop -->
-<section class="scr" id="s5"><div class="card">
-<h1>CONGRATULATIONS! MISSION COMPLETED.</h1>
-<p class="sub">Surat rahasia dari seseorang yang cukup beruntung bisa mengenalmu.</p>
-<div class="env" id="env"><div class="lt"></div><div class="fl"></div></div>
-<button class="btn" id="open">BUKA SURAT</button>
-</div></section>
+<!-- SCENE 7: GAME GELEMBUNG -->
+<section class="scene" id="s6"><div class="w"><h2>SELAMATKAN 21 GELEMBUNG KEBAHAGIAAN UNTUK BIWLA!</h2><div id="cnt">0/21</div>
+<div class="hid" id="unl"><h2 style="font-size:clamp(30px,9vw,60px)">LEVEL 21 UNLOCKED!!!</h2><br><button class="btn" id="b6">BUKA KUENYA 🎂</button></div></div></section>
 
-<!-- SURAT (EDIT ISI SURAT DI SINI) -->
-<section class="scr" id="s6">
-<div class="paper" id="paper">
-<p><b>Halo, Biwla!</b></p>
-<p>Selamat ulang tahun yang ke-21! Level 20 resmi selesai, dan kamu lolos tanpa remedial. Nggak semua orang bisa, lho. Apalagi dengan bau amis praktikum yang nempel di mana-mana.</p>
-<p>Terima kasih ya, sudah jadi bagian dari cerita dan pertemanan ini. Kamu memang mungil, tapi dampak keberadaanmu gede banget. Ibarat plankton: kelihatannya kecil, tapi tanpa kamu ekosistemnya pincang.</p>
-<p>Doaku sederhana: semoga kamu selalu sehat dan bahagia, dimudahkan kuliahnya, dari proposal dan skripsinya, data yang nggak mau konsisten, sampai revisi jam dua belas malam. Semoga hal-hal yang kamu inginkan pelan-pelan jadi nyata.</p>
-<p>Soal kesukaan kamu tentang diving: jangan pernah berhenti suka. Semoga suatu hari kamu benar-benar bisa menjelajah laut, lihat terumbu karang, dan ketemu langsung biota yang selama ini kamu sukai. Kalau ketemu hiunya nanti, aku nitip pegang lidah hiu pleaseeeeeeee.</p>
-<p>Satu lagi: masuk usia 21 semoga kamu menjadi seseorang yang lebih baik. Terus mempelajari sesuatu, mencoba hal baru karna banyak bgt yg bisa di eksplor di dunia ini. Laut saja nggak pernah selesai dijelajahi, masa kamu ga mau eksplor trs ceritain apa aja yg udh kamu ketahui?</p>
-<p>Semoga usia 21 ini membawa banyak pengalaman menyenangkan dan orang-orang baik di sekitarmu. Dari Bandung sampai dasar laut, semoga selalu ada yang menemanimu.</p>
-<p>Peluk jauh dari seseorang yang cukup beruntung mengenalmu 🦈<br>P.S. Sertifikat penyelam resminya belum ada, tapi sertifikat besti ini sudah tersedia.</p>
-<!-- EDIT: tambahkan namamu di baris tanda tangan di atas -->
-</div>
-<p style="text-align:center"><button class="btn" id="n6" hidden>SELESAI BACA</button></p>
-</section>
+<!-- SCENE 8: KUE -->
+<section class="scene" id="s7"><div class="w"><h2 id="h7">ADA 21 LILIN YANG HARUS DIPADAMKAN!</h2>
+<div class="cake"><div id="cd"></div><div class="tier t1"></div><div class="tier t2"></div></div>
+<button class="btn" id="b7a">TIUP LILINNYA! 💨</button>
+<div class="hid" id="fin7"><h2 style="font-size:clamp(28px,8vw,52px)">HAPPY 21ST BIRTHDAY, BIWLA!!!</h2><p class="big">SELAMAT DATANG DI USIA 21 TAHUN!</p><div class="avs" id="a7" style="margin:10px"></div><button class="btn alt" id="b7">BUKA PESAN RAHASIA 💌</button></div></div></section>
 
-<!-- HALAMAN PENUTUP -->
-<section class="scr" id="s7"><div class="card">
-<h1>HAPPY 21ST BIRTHDAY, BIWLA!</h1>
-<p>Semoga di usia yang baru ini, hidupmu selalu seluas samudra, seindah terumbu karang, dan sebahagia ikan yang tidak pernah memikirkan deadline.</p>
-<div style="margin:12px 0"><div class="ban">LEVEL 21 UNLOCKED!</div><br><svg class="shk" style="width:190px;height:90px"><use href="#shark"/></svg></div>
-<p class="msg" id="hg"></p>
-<button class="btn" id="hug">KIRIM PELUKAN DARI JAUH</button>
-<button class="btn alt" id="again">RESTART THE OCEAN ADVENTURE</button>
-</div></section>
-</main>
+<!-- SCENE 9: PESAN -->
+<section class="scene" id="s8"><div class="w"><h2>💌 The Secret Message</h2><div class="avs" id="a8"></div>
+<button id="chest">💌</button><p id="ch">Klik amplopnya...</p>
+<div id="msg" class="hid">
+<p><b>Halo Biwla! 🎉</b></p>
+<p>Selamat ulang tahun yang ke-21! Dari 20 ke 21, kamu naik level juga ya. Tinggi badannya sih tetap stabil, tapi nggak apa-apa, kualitas nggak diukur dari sentimeter. 😆</p>
+<p>Semoga kamu selalu sehat dan bahagia, apa pun yang lagi kamu hadapi. Buat skripsi dan semester akhirnya: semangat ya! Aku tahu capek, aku tahu kadang pengen kabur ke dasar laut. Tapi kamu sudah sejauh ini, dan semoga semua perjuanganmu terbayar tuntas.</p>
+<p>Semoga perjalanan ke Lombok menyenangkan: lautnya jernih, divingnya seru, pulangnya bawa cerita bagus (bukan cuma bau amis 🐟).</p>
+<p>Semoga kamu selalu dikelilingi orang-orang baik yang tulus sama kamu, dan semoga semua cita-citamu tercapai satu per satu.</p>
+<p>Pokoknya, selamat bertambah usia, Biwla! Semoga di usia 21 ini semakin banyak hal baik yang datang. Semoga skripsinya segera selesai, revisinya semakin sedikit, dan kehidupan tidak memberikan revisi sebanyak dosen pembimbing. Tetap jadi Biwla yang seru, menyenangkan, dan penuh cerita. Jangan lupa bahagia, jangan lupa menjaga diri, dan jangan sampai terlalu lama menyelam sampai lupa pulang ke permukaan.</p>
+<p style="text-align:center"><b>LOVE, LAUT, DAN SEGALA KEAMISANNYA.<br>HAPPY BIRTHDAY, BIWLA! 🎂🌊</b></p></div>
+<button class="btn alt hid" id="b8">↺ ULANGI DARI AWAL</button></div></section>
 
 <script>
-(function(){
-"use strict";
-var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
-var rnd=function(a){return a[Math.floor(Math.random()*a.length)]},R=function(a,b){return a+Math.random()*(b-a)};
-var PCT=[0,12,28,45,62,78,90,100],DEP=[0,5,12,25,40,60,80,21];
-var cur=0,target=0,shown=0,busy=false,snd=false,AC=null,amb=null,timers=[],qi=0,an=0,dc=0,hugN=0,fearN=0;
-
-/* ===== SUARA (WebAudio, tanpa file) ===== */
-function ctx(){if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(C)AC=new C();}return AC}
-function blip(f){if(!snd)return;var c=ctx();if(!c)return;try{var o=c.createOscillator(),g=c.createGain(),t=c.currentTime;f=f||300;o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(f*2.6,t+.12);g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+.15);o.connect(g);g.connect(c.destination);o.start();o.stop(t+.16)}catch(e){}}
-function ambient(on){var c=ctx();if(!c)return;try{if(on&&!amb){var n=c.sampleRate*2,b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0),l=0;for(var i=0;i<n;i++){l=(l+.02*(Math.random()*2-1))/1.02;d[i]=l*3.5}var s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=b;s.loop=true;f.type="lowpass";f.frequency.value=500;g.gain.value=.35;s.connect(f);f.connect(g);g.connect(c.destination);s.start();amb=s}else if(!on&&amb){amb.stop();amb=null}}catch(e){}}
-$("#sb").onclick=function(){snd=!snd;this.textContent=snd?"🔊":"🔇";var c=ctx();if(c&&c.state==="suspended")c.resume();ambient(snd);blip(350)};
-
-/* ===== POP-UP ACAK (EDIT PESAN DI SINI) ===== */
-var POP=["INFO: Terdeteksi makhluk laut berusia 21 tahun.","Peringatan! Kadar ke-amis-an meningkat.","Hiu lokal meminta izin untuk ikut merayakan ulang tahun.","Sistem mendeteksi bahwa Biwla belum makan ikan hari ini.","Jangan terlalu lama di sini, nanti dikira sedang melakukan penelitian.","Hiu bertanya: kapan sertifikat penyelammu keluar?","Praktikum hari ini diliburkan. Khusus ulang tahun."];
-function toast(t,ms){var e=$("#toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove("show")},ms||3800)}
-setInterval(function(){if(!busy&&Math.random()<.55)toast(rnd(POP))},11000);
-
-/* ===== LATAR: gelembung, ikan, hiu lewat ===== */
-var sea=$("#sea");
-setInterval(function(){if(document.hidden)return;var b=document.createElement("i"),s=R(6,22);b.className="bb";b.style.cssText="width:"+s+"px;height:"+s+"px;left:"+R(0,100)+"%;animation-duration:"+R(6,12)+"s";sea.appendChild(b);setTimeout(function(){b.remove()},13000)},700);
-["🐟","🐠","🐡","🐟","🐠","🦑"].forEach(function(f,i){var e=document.createElement("span");e.className="fish"+(i%2?" r":"");e.textContent=f;e.style.cssText="top:"+R(12,80)+"%;animation-duration:"+R(14,28)+"s;animation-delay:-"+R(0,20)+"s"+(i%2?";animation-direction:reverse":"");sea.appendChild(e)});
-setInterval(function(){if(cur===3||document.hidden)return;var s=document.createElementNS("http://www.w3.org/2000/svg","svg");s.setAttribute("class","shk pass");s.style.top=R(15,70)+"%";s.innerHTML='<use href="#shark"/>';document.body.appendChild(s);setTimeout(function(){s.remove()},9500)},22000);
-
-/* ===== PROGRESS BAR (terus merayap naik) ===== */
-setInterval(function(){var t=target+(cur<7?Math.min(6,(PCT[Math.min(cur+1,7)]-target)*.4):0);if(shown<t)shown+=Math.min(.6,t-shown);$("#pf").style.width=shown+"%";$("#pt").textContent=Math.floor(shown)+"%"},120);
-
-/* ===== TRANSISI + LOADING PALSU ===== */
-var LOAD=["Menguras air laut...","Memanggil hiu dari Bandung...","Mengusir plankton dari server...","Menghitung kadar amis...","Memompa tabung oksigen..."];
-function go(n){if(busy)return;busy=true;blip(250);var L=$("#load"),f=$("#lf");$("#lt").textContent=rnd(LOAD);L.classList.add("on");f.style.transition="none";f.style.width="0";requestAnimationFrame(function(){requestAnimationFrame(function(){f.style.transition="width 1.1s ease-out";f.style.width="99%"})});setTimeout(function(){$("#lt").textContent="99%... tunggu, ada ikan lewat dulu."},1200);setTimeout(function(){show(n);L.classList.remove("on");busy=false},2000)}
-function show(n){
- timers.forEach(clearTimeout);timers=[];cur=n;target=PCT[n];
- $$(".scr").forEach(function(s,i){s.classList.toggle("on",i===n)});
- $("#dp").textContent="🤿 "+DEP[n]+" m";sea.style.setProperty("--p",Math.min(100,n*16)+"%");
- $$("#board li").forEach(function(li,i){li.classList.toggle("done",i<n-1)});
- window.scrollTo(0,0);
- if(n===0)shown=0;
- if(n===1){qi=0;drawQ()}
- if(n===2){an=0;$("#anm").textContent="";$("#an").textContent="LANJUTKAN ANALISIS";drawG()}
- if(n===3){dc=0;$("#shm").textContent="";$("#arena").hidden=true;$("#n3").hidden=true;var d=$("#dodge");d.textContent="Klik kalau berani!";d.style.left="";d.style.top=""}
- if(n===4){$("#hc").innerHTML="";$("#depth").textContent="0,00 m";$("#rf").style.width="0";$("#ms").hidden=false;$("#ms").disabled=false;$("#n4").hidden=true;$("#dl").textContent="Tekan tombol untuk mengukur kedalaman laut di sekitarmu."}
- if(n===5){$("#env").classList.remove("open");$("#open").disabled=false;timers.push(setTimeout(function(){toast("Hiu mengancam: buka suratnya sekarang, atau digigit (pelan-pelan).",4500)},9000))}
- if(n===6){var ps=$$("#paper p");ps.forEach(function(p,i){p.style.animation="none";void p.offsetWidth;p.style.animation="fade .9s forwards";p.style.animationDelay=(i*1.1)+"s"});$("#n6").hidden=true;timers.push(setTimeout(function(){$("#n6").hidden=false},ps.length*1100+800))}
- if(n===7){for(var i=0;i<18;i++)setTimeout(function(){var b=document.createElement("i");b.className="bb";var s=R(10,28);b.style.cssText="width:"+s+"px;height:"+s+"px;left:"+R(0,100)+"%;animation-duration:"+R(3,6)+"s";sea.appendChild(b);setTimeout(function(){b.remove()},7000)},i*120);$("#hg").textContent=""}
-}
-
-/* ===== HALAMAN 1 ===== */
-var LBL=["MULAI PETUALANGAN","AYO NYEBUR!","SELAM SEKARANG","BISMILLAH BERENANG"];
-var li=0;setInterval(function(){if(cur===0&&!busy){li=(li+1)%LBL.length;$("#start").textContent=LBL[li]}},3000);
-$("#start").onclick=function(){go(1)};
-var FEAR=["Lah, katanya suka hiu? Baru lihat gambar aja sudah mundur.","Hiu-nya malah baper. Dia cuma mau ngucapin selamat ulang tahun.","Tenang, hiu ini vegetarian. Eh, nggak juga sih. Tapi dia sudah makan tadi.","Ya sudah, tombol satunya tetap menunggumu di atas. Aman, kok."];
-$("#fear").onclick=function(){$("#fm").textContent=FEAR[fearN%FEAR.length];fearN++;blip(300)};
-
-/* ===== HALAMAN 2: VERIFIKASI ===== */
-var Q=[
-{q:"Siapa nama penghuni laut yang hari ini sedang berulang tahun?",o:["Bilwa","Biwla","Ikan Bawal","Biwlu"],a:1,ok:"Identitas terkonfirmasi. Nama sendiri hafal, aman.",no:["Nama sendiri kok salah. Kebanyakan kena formalin?","Ikan bawal memang enak, tapi bukan itu. Coba lagi."]},
-{q:"Jurusan apa yang membuatmu akrab dengan dunia perairan?",o:["Manajemen Sumber Daya Pasar Malam","Mesin Sedot Pasir","MSP (Manajemen Sumberdaya Perairan)","Ilmu Memancing Tingkat Lanjut"],a:2,ok:"Benar! Jurusan paling harum se-kampus.",no:["Wah, identitas diragukan. Jangan-jangan kamu cuma penyusup dari Fakultas Perikanan sebelah.","Jurusan itu tidak ada di database kami. Coba lagi."]},
-{q:"Apa hewan laut yang katanya kamu suka?",o:["Ikan teri (versi goreng)","Ubur-ubur","Hiu","Rumput laut"],a:2,ok:"Betul! Hiu di belakangmu tersipu.",no:["Katanya anak diving, kok jawabannya begitu? Hiu di belakangmu tersinggung.","Sistem ragu. Kamu yakin bukan sedang lapar?"]}];
-function drawQ(){var q=Q[qi],box=$("#qo"),m=$("#qm");$("#qn").textContent="Pertanyaan "+(qi+1)+" dari "+Q.length;$("#qt").textContent=q.q;box.innerHTML="";m.textContent="";
- q.o.forEach(function(t,i){var b=document.createElement("button");b.className="btn alt";b.textContent=t;b.onclick=function(){blip(400);
-  if(i===q.a){m.textContent="✅ "+q.ok;$$("#qo button").forEach(function(x){x.disabled=true});qi++;setTimeout(function(){if(qi<Q.length)drawQ();else go(2)},1400)}
-  else{m.textContent="❌ "+rnd(q.no);b.classList.add("bad");setTimeout(function(){b.classList.remove("bad")},450)}};box.appendChild(b)})}
-
-/* ===== HALAMAN 3: KUALITAS AIR ===== */
-var G=[["Salinitas","34 ‰",85],["Suhu perairan","28,5 °C",70],["pH","8,1",80],["Kekeruhan","12 NTU",25],["Indeks amis","999/1000",99.9]];
-function drawG(){var h="";G.forEach(function(g,i){h+='<div class="g'+(i===4?" bad":"")+'"><span>'+g[0]+'</span><div class="t"><i data-w="'+g[2]+'"></i></div><b>'+g[1]+'</b></div>'});$("#gauges").innerHTML=h;setTimeout(function(){$$("#gauges i").forEach(function(e){e.style.width=e.dataset.w+"%"})},150)}
-$("#an").onclick=function(){blip(300);if(an===0){an=1;$("#anm").textContent="Hasil: sampel “Biwla” layak huni di laut. Hidung peneliti belum layak.";this.textContent="TETAP LANJUT (TUTUP HIDUNG)"}else go(3)};
-
-/* ===== HALAMAN 4: HIU ===== */
-var CH=[["Mendekati hiu.","Hiu kaget lalu mundur. Siapa yang menakuti siapa, nih?"],["Mengajak hiu berteman.","Hiu menerima. Statusnya: bodyguard ulang tahun, bayaran ikan teri."],["Pura-pura tidak melihat hiu.","Hiu berenang tepat di depan mukamu sambil bertanya, kenapa belum jadi penyelam profesional?"],["Langsung menyelam lebih dalam.","Kamu kabur ke bawah secepat mahasiswa menghindari revisi. Biwla memang lebih betah di laut daripada menghadapi tugas kuliah."]];
-$("#ch").innerHTML=CH.map(function(c,i){return '<button class="btn alt" data-i="'+i+'">'+c[0]+'</button>'}).join("");
-$("#ch").onclick=function(e){var b=e.target.closest("button");if(!b)return;blip(380);$("#shm").textContent=CH[b.dataset.i][1];if($("#n3").hidden)$("#arena").hidden=false};
-var DL=["Klik kalau berani!","Hampir! Eh, kurang cepat.","Hiunya aja berani lho.","Kok mundur sih?","Sedikit lagi!"];
-var dg=$("#dodge");
-function dodge(e){if(dc>=5)return;if(e&&e.preventDefault)e.preventDefault();dc++;var a=$("#arena");dg.style.left=R(0,Math.max(0,a.clientWidth-dg.offsetWidth))+"px";dg.style.top=R(0,Math.max(0,a.clientHeight-dg.offsetHeight))+"px";blip(520);dg.textContent=dc>=5?"Oke, aku menyerah. Klik sekarang!":rnd(DL)}
-dg.addEventListener("pointerenter",dodge);dg.addEventListener("pointerdown",dodge);
-dg.onclick=function(){if(dc<5){dodge();return}blip(600);$("#shm").textContent="🎉 Selamat! Kamu berhasil mengalahkan rasa takut. Hiu saja akhirnya mengakui keberanianmu.";$("#arena").hidden=true;$("#n3").hidden=false};
-$("#n3").onclick=function(){go(4)};
-
-/* ===== HALAMAN 5: TINGGI BADAN ===== */
-var HC=["Objek terdeteksi memiliki tinggi yang relatif kompak.","Jangan khawatir, ukuran tubuh tidak menentukan seberapa luas lautan yang bisa kamu jelajahi.","Tinggi boleh di bawah 155 cm, tetapi jangan sampai ekspektasi hidup ikut di bawah permukaan laut.","Kalau menyelam terlalu dalam, jangan lupa bawa pemberat. Takutnya malah mengapung karena terlalu ringan.","Catatan lapangan: ukuran kecil, dampak besar. Cuma jangan sampai hilang di antara rumput laut."];
-$("#ms").onclick=function(){var b=this,v=0;b.disabled=true;blip(300);var t=setInterval(function(){v+=.04;if(v>=1.54){v=1.54;clearInterval(t);$("#dl").textContent="Peringatan: itu bukan kedalaman laut. Itu tinggi objek (di bawah 155 cm).";b.hidden=true;HC.forEach(function(c,i){timers.push(setTimeout(function(){var l=document.createElement("li");l.textContent=c;$("#hc").appendChild(l);blip(450);if(i===HC.length-1)$("#n4").hidden=false},(i+1)*1700))})}
- $("#depth").textContent=v.toFixed(2).replace(".",",")+" m";$("#rf").style.width=(v/1.6*100)+"%"},35)};
-$("#n4").onclick=function(){go(5)};
-
-/* ===== HALAMAN 6: SURAT ===== */
-$("#open").onclick=function(){this.disabled=true;blip(500);$("#env").classList.add("open");setTimeout(function(){show(6)},2200)};
-$("#n6").onclick=function(){go(7)};
-
-/* ===== PENUTUP ===== */
-var HUG=["🤗 Pelukan terkirim! Estimasi tiba 3 hari kerja, tergantung arus laut.","Pelukan tersangkut di Selat Sunda. Hiu sedang membantu mengantar.","Pelukan sampai! Tapi karena kamu mungil, hampir nggak ketemu. Becanda, kok.","Kuota pelukan habis. Silakan traktir sebagai gantinya. 😄"];
-$("#hug").onclick=function(){$("#hg").textContent=HUG[hugN%HUG.length];hugN++;blip(450)};
-$("#again").onclick=function(){hugN=0;fearN=0;go(0)};
-})();
-</script>
-</body>
-</html>
+/* ===== HELPER ===== */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],R=(a,b)=>Math.random()*(b-a)+a,pick=a=>a[Math.floor(Math.random()*a.length)];
+const cyc=a=>{let i=0;return()=>a[i++%a.length]};
+const show=(s,v=true)=>$(s).classList.toggle('hid',!v);
+let tok=0,cur=0,iv=null;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const sl=async ms=>{const t=tok;await sleep(ms);if(t!==tok)throw 0}; // batal otomatis kalau pindah scene
+const bind=(id,fn)=>{$(id).onclick=e=>{if(Date.now()-($(id)._t||0)<600)return;Promise.resolve(fn(e)).catch(()=>{})}};
+const nx=(id,n)=>bind(id,e=>{confetti(e.clientX,e.clientY,30);go(n)});
+/* ===== AUDIO (disintesis, tanpa file mp3) ===== */
+let AC,muted=false,mi=0,mt=null;
+function tone(f,d=.1,ty='square',v=.06,t0=0){if(muted||!AC)return;const o=AC.createOscillator(),g=AC.createGain(),n=AC.currentTime+t0;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v,n);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g);g.connect(AC.destination);o.start(n);o.stop(n+d)}
+const sfx={pop(){tone(R(500,900),.08,'sine',.12)},blip(){tone(660,.06,'square',.05)},boom(){tone(90,.4,'sawtooth',.15);tone(60,.5,'square',.1)},win(){[523,659,784,1047].forEach((f,i)=>tone(f,.2,'square',.07,i*.1))},fail(){[400,300,200].forEach((f,i)=>tone(f,.2,'sawtooth',.07,i*.12))}};
+const MEL=[523,659,784,659,880,784,659,523,587,698,880,698,784,659,587,523];
+function music(){if(mt)return;mt=setInterval(()=>{if(!AC||muted)return;const f=MEL[mi++%MEL.length];tone(f/2,.25,'triangle',.05);if(mi%2==0)tone(f,.12,'sine',.03)},240)}
+/* ===== CONFETTI & KEMBANG API ===== */
+const cv=$('#fx'),cx=cv.getContext('2d');let P=[];
+const rsz=()=>{cv.width=innerWidth;cv.height=innerHeight};rsz();addEventListener('resize',rsz);
+function confetti(x,y,n=50,sp=8){for(let i=0;i<n;i++){const a=R(0,6.28),s=R(2,sp);P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-3,c:`hsl(${R(0,360)},100%,60%)`,s:R(4,10),l:R(90,140),g:.18,q:1})}}
+function firework(x,y){const h=R(0,360);for(let i=0;i<70;i++){const a=R(0,6.28),s=R(1,6);P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,c:`hsl(${h+R(-20,20)},100%,65%)`,s:3,l:R(50,80),g:.05,q:0})}sfx.boom()}
+(function lp(){cx.clearRect(0,0,cv.width,cv.height);P=P.filter(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.vx*=.99;p.l--;cx.globalAlpha=Math.min(1,p.l/30);cx.fillStyle=p.c;p.q?cx.fillRect(p.x,p.y,p.s,p.s*.6):(cx.beginPath(),cx.arc(p.x,p.y,p.s,0,6.28),cx.fill());return p.l>0&&p.y<cv.height+20});requestAnimationFrame(lp)})();
+async function fireShow(n=12){for(let i=0;i<n;i++){firework(R(60,innerWidth-60),R(80,innerHeight*.6));confetti(R(0,innerWidth),0,15,3);await sl(350)}}
+/* ===== DEKORASI LATAR ===== */
+for(let i=0;i<28;i++){const b=document.createElement('i');b.className='bu';const s=R(8,38);b.style.cssText=`width:${s}px;height:${s}px;left:${R(0,100)}%;animation-duration:${R(7,18)}s;animation-delay:${-R(0,15)}s`;$('#bg').append(b)}
+['🐠','🐟','🐡','🦈','🐬','🦑'].forEach((f,i)=>{const e=document.createElement('span');e.className='fs';e.textContent=f;e.style.cssText=`top:${R(10,80)}%;animation-duration:${R(14,30)}s;animation-delay:${-R(0,20)}s`;$('#bg').append(e)});
+$$('#sw span').forEach((s,i)=>s.style.animationDelay=-i*.4+'s');
+let fx=innerWidth/2,fy=innerHeight/2,tx=fx,tyy=fy;addEventListener('pointermove',e=>{tx=e.clientX;tyy=e.clientY});
+(function ff(){fx+=(tx-fx)*.08;fy+=(tyy-fy)*.08;$('#fish').style.transform=`translate(${fx+14}px,${fy+14}px) scaleX(${tx<fx?1:-1})`;requestAnimationFrame(ff)})();
+/* ===== AVATAR (foto biwla.jpg) ===== */
+const AV=(sm='')=>`<div class="av ${sm}"><div class="orb"><i>🐠</i><i>🐡</i><i>🐟</i></div><div class="face"></div><u>🤿</u></div>`;
+['a0','a1','a7','a8'].forEach(i=>$('#'+i).innerHTML=AV());$('#hm').innerHTML=AV('sm');
+let avc=0;const REACT=['😝','😱','🤣','PANIK!!!','Apaan sih?!','ASTAGA 🫣','BLUP BLUP 🫧','AMIS +1'];
+document.addEventListener('click',e=>{const a=e.target.closest('.av');if(!a)return;a.classList.remove('wob');void a.offsetWidth;a.classList.add('wob');const s=document.createElement('span');s.className='sp';s.textContent=pick(REACT);a.append(s);setTimeout(()=>s.remove(),1000);sfx.blip();confetti(e.clientX,e.clientY,12,5);
+ if(++avc==7)say('🥚 EASTER EGG! Kamu menemukan Biwla versi rahasia: "Penguasa Kolam Tambak". Hadiah: 1 revisi gratis (S&K berlaku).')});
+/* ===== MODAL, TYPEWRITER ===== */
+function say(h){$('#mt').innerHTML=h;$('#modal').style.display='flex';sfx.win()}
+$('#mok').onclick=()=>{$('#modal').style.display='none';sfx.blip()};
+async function ty(e,txt,sp=35){e.textContent='';for(const c of txt){e.textContent+=c;if(c!=' ')tone(300+R(0,50),.03,'square',.02);await sl(sp)}}
+/* ===== TOMBOL JEBAKAN (kabur saat mau diklik, tetap bisa diklik setelahnya) ===== */
+['b0','b3','b5a'].forEach(i=>{const b=$('#'+i);b.dataset.d=0;const d=e=>{if(+b.dataset.d<2){b.dataset.d++;b._t=Date.now();b.style.transform=`translate(${R(-60,60)}px,${R(-40,40)}px) rotate(${R(-8,8)}deg)`;sfx.blip()}};b.addEventListener('pointerenter',e=>e.pointerType=='mouse'&&d(e));b.addEventListener('pointerdown',e=>e.pointerType!='mouse'&&d(e))});
+const rst=i=>{const b=$('#'+i);b.dataset.d=0;b.style.transform=''};
+/* ===== NAVIGASI ===== */
+const INIT=[];
+function go(n){tok++;cur=n;clearInterval(iv);$$('.scene').forEach((s,i)=>s.classList.toggle('on',i==n));$('#fill').style.width=((n+1)/9*100)+'%';$('#lv').textContent=`LV ${n+1}/9`;$('#dark').style.opacity=0;sfx.win();Promise.resolve(INIT[n]()).catch(()=>{})}
+/* ----- SCENE 1 ----- */
+INIT[0]=async()=>{rst('b0');['#warn','#t1','#t2'].forEach(s=>$(s).textContent='');['#radar','#a0','#b0'].forEach(s=>show(s,0));
+ await ty($('#warn'),'PERINGATAN!!!',60);await sl(300);await ty($('#t1'),'TELAH TERDETEKSI MAKHLUK LAUT LANGKA DARI BANDUNG...');await sl(300);
+ await ty($('#t2'),'SPESIES INI DIPERKIRAKAN BERUSIA 20 TAHUN DAN AKAN MENGALAMI EVOLUSI MENUJU USIA 21 TAHUN.',22);show('#radar');await sl(2300);show('#radar',0);show('#a0');sfx.win();confetti(innerWidth/2,innerHeight/2,40);await sl(900);show('#b0')};
+nx('#b0',1);
+/* ----- SCENE 2 ----- */
+const ST=[['🎂 Usia','21 Tahun (LEVEL UP!)',['Dulu 20, sekarang 21. Patch 1.0.21 rilis, bug lama belum di-fix.','Level naik, saldo rekening masih level 1.']],
+['📍 Asal','Bandung',['Kota kembang, tapi jiwanya kembang tambak.','Jauh dari laut tapi hobinya laut. Plot twist tiap hari.']],
+['🐟 Spesialisasi','Manajemen Sumberdaya Perairan',['Mengelola sumberdaya perairan, tapi belum bisa mengelola jadwal bimbingan.','MSP: Mahasiswa Sering Pulang-bau-amis.']],
+['🤿 Skill utama','Menyelam',['Bisa tahan napas di bawah air. Tidak bisa tahan napas kalau dosen bilang "revisi dikit".','Ikan: "Kok ada manusia lebih betah di sini daripada kami?"']],
+['📚 Status','Skripsian Semester 7',['Loading... BAB 4 99%... (sudah 3 bulan).','Semester 7 itu bukan fase, itu gaya hidup.']],
+['📏 Tinggi badan','<155 CM',['Travel size. Muat di kabin, tidak perlu bayar bagasi (belum dicoba).','Titik pandang tertinggi: dagu orang lain.']],
+['🏝️ Misi berikutnya','Lombok',['Misi utama: ikan cantik. Side quest: ketenangan hidup.','Lombok menunggu. Skripsi juga menunggu. Pilih yang seru dulu.']]];
+INIT[1]=async()=>{show('#b1',0);$('#stats').innerHTML='';for(const [a,b,j] of ST){const n=cyc(j),s=document.createElement('button');s.className='stat';s.innerHTML=`<span>${a}</span><span>${b}</span>`;s.onclick=()=>say(n());$('#stats').append(s);sfx.pop();await sl(450)}show('#b1')};
+nx('#b1',2);
+/* ----- SCENE 3 ----- */
+const nd=$('#needle');
+INIT[2]=()=>{nd.style.transform='rotate(-85deg)';show('#b2',0);$('#b2a').textContent='CEK KADAR AMIS BIWLA';$('#r2').textContent='WARNING! BAU AMIS TERDETEKSI!'};
+bind('#b2a',async()=>{$('#b2a').disabled=true;$('#r2').textContent='MEMINDAI...';for(const d of [-70,60,-20,85,40,89]){nd.style.transform=`rotate(${d}deg)`;sfx.blip();await sl(450)}
+ $('#r2').innerHTML='AMIS LEVEL: LEGENDARY<br><small>Sudah tidak bisa dibedakan antara manusia, ikan, dan mahasiswa MSP.</small>';sfx.fail();
+ for(let i=0;i<8;i++){const f=document.createElement('span');f.className='flee';f.textContent=pick(['🐟','🐠','🐡','😵']);f.style.cssText=`left:${R(20,80)}%;top:${R(20,70)}%;--x:${R(-1,1)>0?'':'-'}${R(200,500)}px`;document.body.append(f);setTimeout(()=>f.remove(),1700)}
+ $('#b2a').disabled=false;$('#b2a').textContent='CEK LAGI (hasilnya makin parah)';show('#b2')});
+nx('#b2',3);
+/* ----- SCENE 4 ----- */
+const hm=$('#hm'),HJ=cyc(['Sepatu hak 7 cm terpasang! Tinggi: 161 cm. Sayangnya sepatunya tenggelam, tingginya ikut.','Hak 15 cm aktif! Biwla jatuh. Alhamdulillah tinggi tetap sama, harga diri tetap tinggi.','Platform shoes terdeteksi. Hasil: 154,9 cm + 0,1 cm gengsi.','Sepatu hak virtual error: "Barang ini tidak tersedia untuk ukuran travel size."']);
+INIT[3]=async()=>{rst('b3');['#j3','#g3','#b3'].forEach(s=>show(s,0));$('#hs').textContent='SEDANG MELAKUKAN PEMINDAIAN TINGGI BADAN...';hm.style.transform='';
+ for(let h=0;h<=154;h+=2){$('#hn').textContent=h+' CM';hm.style.bottom=Math.max(0,h/200*230-74)+'px';tone(200+h*2,.03,'square',.03);await sl(28)}
+ $('#hn').textContent='154.9 CM';$('#hs').innerHTML='<b>TINGGI BADAN: DI BAWAH 155 CM</b>';sfx.fail();show('#j3');show('#g3');show('#b3')};
+bind('#b3a',async()=>{const b=$('#b3a');b.disabled=true;hm.style.transform='scale(1.6)';for(const p of [5,23,47,78,99]){$('#hs').textContent=`MENINGGIKAN BADAN... ${p}%`;sfx.blip();await sl(450)}
+ hm.style.transform='';sfx.boom();$('#hs').innerHTML='<b class="red">ERROR 404: TINGGI BADAN TIDAK DITEMUKAN.</b>';b.disabled=false;b.textContent=pick(['COBA LAGI (SIAPA TAU)','KLIK LAGI, PASTI BERHASIL','NAMBAH 0 CM LAGI'])});
+bind('#b3h',()=>{say('👠 '+HJ());confetti(innerWidth/2,innerHeight/2,40)});
+nx('#b3',4);
+/* ----- SCENE 5: BOSS ----- */
+let bhp=9999,mhp=100,rev=false;
+INIT[4]=()=>{bhp=9999;mhp=100;rev=false;$('#boss').textContent='🦑';$('#hpb').style.width='100%';$('#hph').style.width='100%';$('#hpn').textContent=100;$('#bl').textContent='Skripsi: 9999 HP | Revisi: Unlimited';show('#b4',0);$('#b4a').disabled=false;$('#b4a').textContent='⚔️ LAWAN SKRIPSI SEKARANG'};
+const fl=(e,t)=>{const d=document.createElement('div');d.className='dmg';d.textContent=t;d.style.left=Math.min(innerWidth-120,e.clientX)+'px';d.style.top=e.clientY+'px';document.body.append(d);setTimeout(()=>d.remove(),1000)};
+bind('#b4a',async e=>{if(rev){fl(e,'-0 (revisi kebal klik)');sfx.fail();show('#b4');return}
+ const d=Math.round(R(700,1200));bhp=Math.max(0,bhp-d);$('#hpb').style.width=bhp/99.99+'%';$('#bl').textContent=`Skripsi: ${bhp} HP | Revisi: Unlimited`;fl(e,'-'+d);sfx.boom();$('#boss').classList.remove('wob');void $('#boss').offsetWidth;$('#boss').classList.add('wob');
+ if(Math.random()<.4){const h=Math.round(R(3,9));mhp=Math.max(10,mhp-h);$('#hph').style.width=mhp+'%';$('#hpn').textContent=mhp;$('#log').textContent=pick(['Dosen: "Bab 2 kok begini?" (-'+h+' HP)','Revisi kecil datang: titik koma kurang. (-'+h+' HP)','Dosen menghilang lalu muncul. (-'+h+' HP)'])}
+ if(bhp<=0){$('#b4a').disabled=true;$('#log').innerHTML='<b>CONGRATULATIONS! BIWLA BERHASIL MENGALAHKAN 1 REVISI.</b>';sfx.win();confetti(innerWidth/2,innerHeight/3,100);await sl(2200);
+  rev=true;$('#boss').textContent='🐙';$('#hpb').style.width='100%';$('#bl').textContent='Revisi Bab Selanjutnya: ∞ HP';$('#log').innerHTML='<b class="red">REVISI BAB SELANJUTNYA TELAH MUNCUL.</b>';sfx.fail();$('#b4a').disabled=false;$('#b4a').textContent='⚔️ LAWAN LAGI (sia-sia)';show('#b4')}});
+nx('#b4',5);
+/* ----- SCENE 6: LOMBOK ----- */
+INIT[5]=()=>{rst('b5a');$('#boat').style.transition='none';$('#boat').style.left='2%';show('#b5',0);show('#b5a');$('#lt').textContent='Dari Bandung menuju Lombok: cari ketenangan sekaligus spot diving.'};
+bind('#b5a',async()=>{show('#b5a',0);$('#boat').style.transition='left 3.2s ease-in-out';$('#boat').style.left='72%';$('#lt').textContent='🌊 Berangkat!!! Pegangan, ombaknya revisi-an...';for(let i=0;i<8;i++){confetti(R(0,innerWidth),R(0,200),20,5);sfx.blip();await sl(400)}$('#lt').textContent='🏝️ SAMPAI LOMBOK! Sunscreen sudah? Skripsi tolong ditaruh di loker dulu.';sfx.win();confetti(innerWidth/2,200,120);show('#b5')});
+nx('#b5',6);
+/* ----- SCENE 7: GELEMBUNG ----- */
+const BT=['AMIS +1','TINGGI +0,1 CM','REVISI -1 (SEMOGA)','KEBAHAGIAAN +100','BAB 4 +1%','OKSIGEN +10','LOMBOK +1','DOSBING -1 (HILANG)'];let cnt=0;
+function spawn(){if(cnt>=21)return;const b=document.createElement('div'),s=R(54,92);b.className='bub';b.style.cssText=`width:${s}px;height:${s}px;left:${R(2,88)}%;animation-duration:${R(5,8)}s;background:radial-gradient(circle at 30% 30%,#fff9,hsl(${R(160,330)},95%,60%,.7))`;b.textContent=pick(['🫧','','⭐','🎈']);b.style.fontSize=(s/2)+'px';b.onanimationend=()=>b.remove();
+ b.onpointerdown=e=>{if(cnt>=21||!b.isConnected)return;b.remove();cnt++;$('#cnt').textContent=cnt+'/21';sfx.pop();confetti(e.clientX,e.clientY,14,5);const t=document.createElement('div');t.className='pt';t.textContent=pick(BT);t.style.left=Math.min(innerWidth-150,e.clientX)+'px';t.style.top=e.clientY+'px';document.body.append(t);setTimeout(()=>t.remove(),1000);if(cnt>=21)win6()};$('#s6').append(b)}
+function win6(){clearInterval(iv);$$('.bub').forEach(b=>b.remove());show('#unl');sfx.win();confetti(innerWidth/2,innerHeight/2,200,12);fireShow(8).catch(()=>{})}
+INIT[6]=()=>{cnt=0;$('#cnt').textContent='0/21';show('#unl',0);$$('.bub').forEach(b=>b.remove());iv=setInterval(spawn,550)};
+nx('#b6',7);
+/* ----- SCENE 8: KUE ----- */
+INIT[7]=()=>{$('#cd').innerHTML='<span class="c"></span>'.repeat(21);show('#fin7',0);show('#b7a');$('#h7').textContent='ADA 21 LILIN YANG HARUS DIPADAMKAN!';$('#b7a').disabled=false};
+bind('#b7a',async()=>{$('#b7a').disabled=true;sfx.blip();for(const c of $$('.c')){c.classList.add('o');tone(R(300,600),.05,'sine',.05);await sl(90)}
+ $('#dark').style.opacity=.8;sfx.fail();await sl(1300);$('#dark').style.opacity=0;show('#b7a',0);$('#h7').textContent='🎉 FIUUUH! 🎉';show('#fin7');$('#a7').firstChild.classList.add('dance');sfx.win();confetti(innerWidth/2,innerHeight/3,200,12);await fireShow(14)});
+nx('#b7',8);
+/* ----- SCENE 9: PESAN ----- */
+INIT[8]=()=>{show('#msg',0);show('#b8',0);show('#chest');show('#ch');MEL.length=16};
+bind('#chest',async()=>{show('#chest',0);show('#ch',0);sfx.win();confetti(innerWidth/2,innerHeight/2,120);show('#msg');await sl(2500);show('#b8')});
+bind('#b8',()=>go(0));
+/* ===== KONTROL ===== */
+$('#mute').onclick=()=>{muted=!muted;$('#mute').textContent=muted?'🔇':'🔊'};
+$('#rs').onclick=()=>{avc=0;go(0)};
+async function start(snd){AC=new(window.AudioContext||window.webkitAudioContext)();muted=!snd;$('#mute').textContent=muted?'🔇':'🔊';music();$('#gate').style.display='none';go(0)}
+$('#g1').onclick=()=>start(true);$('#g2').onclick=()=>start(false);
+/* Pop-up absurd acak */
+const RP=['⚠️ Ikan di belakangmu mengaku lihat revisi baru.','📢 PENGUMUMAN: Dosen pembimbing sedang online. Jangan panik. (Panik)','🐟 "Kami tidak amis. Kami hanya wangi laut." — Ikan, 2026','🔔 Notifikasi: BAB 4 rindu kamu.','🫧 Gelembung ini disponsori oleh oksigen tabung.'];
+setInterval(()=>{if($('#gate').style.display=='none'&&$('#modal').style.display!='flex'&&cur>=1&&cur<=5)say(pick(RP))},28000);
+</script></body></html>
