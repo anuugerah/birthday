@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Operasi Ikan Amis</title><style>
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0b0d18"><title>Operasi Ikan Amis</title><style>
 :root{--bg:#0b0d18;--fg:#fff;--ac:#ffd36b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:"Courier New",monospace;overflow:hidden}
 body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
@@ -6,17 +6,31 @@ body{display:flex;flex-direction:column;align-items:center;justify-content:cente
 #ab{min-height:34px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 button{font:bold 13px "Courier New",monospace;background:#23294a;color:var(--ac);border:2px solid var(--ac);padding:7px 12px;cursor:pointer;border-radius:3px}
 button:active{background:var(--ac);color:#111}
-#w{position:relative;width:min(100vw,calc((100vh - 96px)*16/9))}#w canvas{width:100%;display:block}#pad{display:none;position:absolute;left:0;right:0;bottom:6px;padding:0 10px;box-sizing:border-box;justify-content:space-between;align-items:flex-end;pointer-events:none}@media (pointer:coarse){#pad{display:flex}}#pad div{display:flex;gap:6px;pointer-events:none}#pad button{width:44px;height:44px;padding:0;opacity:.6;border-radius:50%;pointer-events:auto;touch-action:none;background:#141830}#pad #eb{width:54px;height:54px;font-size:18px}body.nopad #pad{display:none!important}
-#top{position:fixed;right:8px;top:calc(8px + env(safe-area-inset-top,0px));display:flex;gap:6px}#top button{padding:3px 8px}
+#w{position:relative;width:min(100vw,calc((100vh - 96px)*16/9))}#w canvas{width:100%;display:block}#pad{display:none;position:absolute;left:0;right:0;bottom:6px;padding:0 10px;box-sizing:border-box;justify-content:space-between;align-items:flex-end;pointer-events:none}@media (pointer:coarse){#pad{display:flex}}#pad button{width:44px;height:44px;padding:0;opacity:.6;border-radius:50%;pointer-events:auto;touch-action:none;background:#141830}#pad #eb{width:54px;height:54px;font-size:18px}body.nopad #pad{display:none!important}
+#top{z-index:8;position:fixed;right:max(8px,env(safe-area-inset-right));top:calc(8px + env(safe-area-inset-top,0px));display:flex;gap:6px}#top button{padding:3px 8px}
 #card,#pz{position:fixed;inset:0;background:rgba(5,6,15,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;z-index:9}
 #card[hidden],#pz[hidden]{display:none}
 .paper{background:#fff6e0;color:#4a2b2b;max-width:480px;padding:20px 24px;border-radius:6px;line-height:1.6;white-space:pre-wrap;font:15px Georgia,serif;box-shadow:0 0 30px #ff9a3c66;max-height:70vh;overflow:auto}
 #vm{position:fixed;inset:0;background:rgba(5,6,15,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px;z-index:10}#vm[hidden]{display:none}#vm video{max-width:min(92vw,520px);max-height:68vh;background:#000;border:2px solid var(--ac);box-shadow:0 0 30px #ff9a3c66}#vmsg{max-width:min(92vw,420px);text-align:center;font:12px "Courier New",monospace;color:#ff9ab8;line-height:1.5}#vt{font:bold 14px "Courier New",monospace;color:var(--ac);text-align:center}
-</style></head><body>
-<div id="top"><button id="mu">🔊</button><button id="pa">⏸</button></div>
-<div id="w"><canvas id="c" width="480" height="270"></canvas><div id="pad"><div><button data-k="a">◀</button><button data-k="w">▲</button><button data-k="s">▼</button><button data-k="d">▶</button></div><button id="eb">E</button></div></div><div id="ab"></div>
 
-<div id="card" hidden></div><div id="vm" hidden><div id="vt"></div><video id="vv" controls playsinline></video><div id="vmsg" hidden>⚠ Video gagal diputar di tampilan ini.<br>Download file HTML-nya, lalu buka langsung di browser (Chrome/Brave/Safari).</div><button id="vx">TUTUP KADO</button></div><div id="pz" hidden><b>⏸ JEDA</b><div style="display:flex;gap:8px"><button id="rs">LANJUT</button><button onclick="location.reload()">MAIN ULANG</button></div></div>
+#pad{padding:0 max(10px,env(safe-area-inset-right)) 0 max(10px,env(safe-area-inset-left))!important;bottom:calc(8px + env(safe-area-inset-bottom,0px))!important}
+#pad #js{--js:clamp(92px,28vh,140px);position:relative;width:var(--js);height:var(--js);border-radius:50%;background:radial-gradient(circle,rgba(255,211,107,.10) 0,rgba(20,24,48,.5) 70%);border:2px solid rgba(255,211,107,.55);pointer-events:auto;touch-action:none;display:block}
+#pad #jk{position:absolute;left:50%;top:50%;width:44%;height:44%;margin:-22% 0 0 -22%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe9a8,#ffd36b 60%,#c9972f);border:2px solid #ffd36b;box-shadow:0 2px 6px rgba(0,0,0,.5);pointer-events:none;will-change:transform;display:block}
+#ts{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:rgba(20,24,48,.95);color:var(--ac);border:2px solid var(--ac);border-radius:4px;padding:8px 12px;font:bold 12px "Courier New",monospace;text-align:center;max-width:min(92vw,420px);z-index:20;line-height:1.5}#ts[hidden]{display:none}
+@media (orientation:portrait){#pad #js{--js:clamp(64px,22vw,96px)}}
+@supports(height:100dvh){html,body{height:100dvh}}
+@media (pointer:coarse) and (orientation:landscape){
+body{gap:0}
+#w{width:min(100vw,calc(100dvh*16/9),calc(100vh*16/9))}
+#c{border-width:0}
+#ab{position:fixed;left:0;right:0;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:5;min-height:0;pointer-events:none}
+#ab button{pointer-events:auto}
+}
+</style></head><body>
+<div id="top"><button id="fs" title="Fullscreen">⛶</button><button id="mu">🔊</button><button id="pa">⏸</button></div>
+<div id="w"><canvas id="c" width="480" height="270"></canvas><div id="pad"><div id="js"><div id="jk"></div></div><button id="eb">E</button></div></div><div id="ab"></div>
+
+<div id="ts" hidden></div><div id="card" hidden></div><div id="vm" hidden><div id="vt"></div><video id="vv" controls playsinline></video><div id="vmsg" hidden>⚠ Video gagal diputar di tampilan ini.<br>Download file HTML-nya, lalu buka langsung di browser (Chrome/Brave/Safari).</div><button id="vx">TUTUP KADO</button></div><div id="pz" hidden><b>⏸ JEDA</b><div style="display:flex;gap:8px"><button id="rs">LANJUT</button><button onclick="location.reload()">MAIN ULANG</button></div></div>
 <script>
 const $=i=>document.getElementById(i),C=$('c'),X=C.getContext('2d');X.imageSmoothingEnabled=false;
 const R=(x,y,w,h,c)=>{X.fillStyle=c;X.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))};
@@ -293,7 +307,7 @@ SC.gate=()=>{const g=G.gt||{};
  gateUI()};
 // ===== sampai sini
 function update(){
- if(scene=='play'&&!cut&&!dq&&!bz){const dx=(K.d||K.arrowright?1:0)-(K.a||K.arrowleft?1:0),dy=(K.s||K.arrowdown?1:0)-(K.w||K.arrowup?1:0),sp=P.carry||G.samp==1?1:1.7;if(dx||dy){idle=0;P.x=cl(P.x+dx*sp,24,456);P.y=cl(P.y+dy*sp,188,256);if(dx)P.d=dx;P.w+=.22*(P.carry?.6:1)}else P.w=0;if(++idle>900&&!nt){nt={t:HINT[ph]||'',f:240};idle=0}}
+ if(scene=='play'&&!cut&&!dq&&!bz){const kx=(K.d||K.arrowright?1:0)-(K.a||K.arrowleft?1:0),ky=(K.s||K.arrowdown?1:0)-(K.w||K.arrowup?1:0),dx=kx||JS.x,dy=ky||JS.y,sp=P.carry||G.samp==1?1:1.7;if(dx||dy){idle=0;P.x=cl(P.x+dx*sp,24,456);P.y=cl(P.y+dy*sp,188,256);if(Math.abs(dx)>.15)P.d=dx>0?1:-1;P.w+=.22*(P.carry?.6:1)*(kx||ky?1:Math.max(.45,Math.hypot(dx,dy)))}else P.w=0;if(++idle>900&&!nt){nt={t:HINT[ph]||'',f:240};idle=0}}
  document.body.classList.toggle('nopad',!(scene=='play'&&!cut&&!dq));if(P.mv)P.w+=.25;G.x+=G.v;G.dy=(G.dy||0)+((dq&&(scene=='ride'||scene=='opi'||scene=='gate'||scene=='time')?44:0)-(G.dy||0))*.15;if(G.jig>0)G.jig--;if(nt&&--nt.f<=0)nt=null;
  if(sm&&scene=='play'&&T%5==0)smk(Math.random()*480,190+Math.random()*70,1);
  if(G.clap)Object.entries(CAST).forEach(([n,c])=>{if(n!='biwla')c.arms=T%24<12?'clap':''});
@@ -308,7 +322,7 @@ function dlg(){if(!dq)return;const [w,t]=dq.L[dq.i];dq.c=Math.min(t.length,dq.c+
 function hud(){if(scene=='title')return;if(obj){R(8,8,obj.length*6.3+16,16,'rgba(0,0,0,.6)');TX('▶ '+obj,14,19,'#ffd36b','bold 10px '+FN)}
  if(nt){R(30,34,420,22,'rgba(0,0,0,.75)');TX(nt.t,240,49,'#9ff0a8','bold 10px '+FN,'center')}
  if(scene=='play'&&!cut&&!dq&&!bz){const n=near();if(n){const t='[E] '+(typeof n.l=='function'?n.l():n.l),w=t.length*6.4+12;R(P.x-w/2,P.y-104,w,16,'rgba(0,0,0,.75)');TX(t,P.x,P.y-92,'#fff','bold 10px '+FN,'center')}}}
-function draw(){X.setTransform(1,0,0,1,0,0);R(0,0,480,270,'#000');X.save();X.translate(240+(Math.random()-.5)*shk,135-(G.dy||0)+(Math.random()-.5)*shk);X.scale(cam.z,cam.z);X.translate(-cam.x,-cam.y);(SC[scene]||(()=>0))();X.restore();shk*=.9;if(shk<.3)shk=0;
+const jsE=$('js');function draw(){{const v=scene=='play'?'visible':'hidden';if(jsE.style.visibility!=v)jsE.style.visibility=v}X.setTransform(1,0,0,1,0,0);R(0,0,480,270,'#000');X.save();X.translate(240+(Math.random()-.5)*shk,135-(G.dy||0)+(Math.random()-.5)*shk);X.scale(cam.z,cam.z);X.translate(-cam.x,-cam.y);(SC[scene]||(()=>0))();X.restore();shk*=.9;if(shk<.3)shk=0;
  parts.forEach(part);if(sm&&scene!='title')R(0,0,480,270,'rgba(120,150,40,.09)');if(fl>0){R(0,0,480,270,`rgba(255,255,255,${fl})`);fl-=.04}if(G.fd>0)R(0,0,480,270,`rgba(0,0,0,${G.fd})`);hud();dlg()}
 function loop(){requestAnimationFrame(loop);if(paused&&scene!='title')return;T++;const w=waits;waits=[];w.forEach(e=>T>=e[0]?e[1]():waits.push(e));update();draw()}
 // ===== INPUT
@@ -330,6 +344,23 @@ C.onpointermove=e=>{mp(e);if(G.drag){const k=G.drag;if(Math.hypot(M.x-KB[k].x,M.
 C.onpointerdown=e=>{init();mp(e);if(dq)return adv();if(scene=='gate'){if(G.gt&&G.gt.on){gPress();try{C.setPointerCapture(e.pointerId)}catch(_){}}return}if(scene=='scope'){for(const k in KB)if(Math.hypot(M.x-KB[k].x,M.y-KB[k].y)<=KB[k].r+8){G.drag=k;G.la=kAng(k);try{C.setPointerCapture(e.pointerId)}catch(_){}}return}ck&&ck(M.x,M.y)};
 C.onpointerup=C.onpointercancel=()=>{G.drag=0;gRelease()};
 C.onwheel=e=>{if(scene!='scope'||dq)return;mp(e);for(const k in KB)if(Math.hypot(M.x-KB[k].x,M.y-KB[k].y)<=KB[k].r+10){e.preventDefault();kturn(k,-Math.sign(e.deltaY)*(k=='c'?.04:.02))}};
+const JS={x:0,y:0};
+(()=>{const b=$('js'),k=$('jk'),DZ=.18;let id=null;
+ const set=e=>{const r=b.getBoundingClientRect(),h=r.width/2,lim=h*.6;let dx=e.clientX-(r.left+h),dy=e.clientY-(r.top+h);const m=Math.hypot(dx,dy);if(m>lim){dx*=lim/m;dy*=lim/m}k.style.transform='translate('+dx+'px,'+dy+'px)';const nx=dx/lim,ny=dy/lim,g=Math.hypot(nx,ny);if(g<DZ){JS.x=JS.y=0}else{const f=(g-DZ)/(1-DZ)/g;JS.x=nx*f;JS.y=ny*f}};
+ const end=e=>{if(e.pointerId!==id)return;id=null;JS.x=JS.y=0;k.style.transform=''};
+ b.onpointerdown=e=>{e.preventDefault();init();id=e.pointerId;try{b.setPointerCapture(id)}catch(_){}set(e)};
+ b.onpointermove=e=>{if(e.pointerId===id)set(e)};
+ b.onpointerup=b.onpointercancel=b.onlostpointercapture=end;
+})();
+let tsT=0;const toast=t=>{const e=$('ts');e.textContent=t;e.hidden=0;clearTimeout(tsT);tsT=setTimeout(()=>e.hidden=1,4500)};
+const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement;
+$('fs').onclick=async()=>{init();const el=document.documentElement,rq=el.requestFullscreen||el.webkitRequestFullscreen;
+ if(fsEl()){try{(document.exitFullscreen||document.webkitExitFullscreen).call(document)}catch(e){}try{screen.orientation.unlock()}catch(e){}return}
+ if(!rq){toast('Browser ini nggak ngizinin fullscreen. Di iPhone: tekan Share lalu Add to Home Screen, terus buka dari ikonnya.');return}
+ try{await rq.call(el,{navigationUI:'hide'})}catch(e){toast('Fullscreen diblokir di sini. Buka file HTML-nya langsung di browser, atau Add to Home Screen.');return}
+ try{await screen.orientation.lock('landscape')}catch(e){}};
+setTimeout(()=>{if(matchMedia('(pointer:coarse)').matches&&innerHeight>innerWidth&&!fsEl())toast('Putar HP ke landscape, atau tekan tombol ⛶ di kanan atas buat fullscreen.')},1200);
+['fullscreenchange','webkitfullscreenchange'].forEach(ev=>document.addEventListener(ev,()=>{$('fs').textContent=fsEl()?'🗗':'⛶'}));
 const tp=()=>{if(scene=='title')return;paused=!paused;$('pz').hidden=!paused};$('pa').onclick=tp;$('rs').onclick=tp;$('mu').onclick=()=>{muted=!muted;$('mu').textContent=muted?'🔇':'🔊'};
 const okk=(t,n)=>{snd('ok');G.jig=25;nt={t:t+'  '+n+'/3 pemeriksaan selesai.',f:130};if(n==3)fire('dis')};
 ck=(x,y)=>{if(scene=='title'){if(x>170&&x<310&&y>88&&y<136)start();return}if(scene=='phone'){if(!G.calling&&Math.hypot(x-240,y-224)<26)fire('dial');return}if(scene!='dis')return;const h=(a,b,r=22)=>Math.hypot(x-a,y-b)<r;
